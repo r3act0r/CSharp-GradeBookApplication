@@ -18,7 +18,7 @@ namespace GradeBook.GradeBooks
                 throw new InvalidOperationException("Ranked-grading requires a minimum of 5 students to work.");
             }
 
-            int x = (int)Math.Round(Students.Count * .2, 0);
+            int percent = (int)Math.Round(Students.Count * .2, 0);
 
             List<double> studentGrades = Students
                 .OrderByDescending(x => x.AverageGrade)
@@ -27,16 +27,16 @@ namespace GradeBook.GradeBooks
 
             switch (averageGrade)
             {
-                case var g when g > studentGrades[x]:
+                case var g when g > studentGrades[percent]:
                     return 'A';
 
-                case var g when g > studentGrades[x * 2] && g < studentGrades[x]:
+                case var g when g > studentGrades[(percent * 2)]:
                     return 'B';
 
-                case var g when g > studentGrades[x * 3] && g < studentGrades[x * 2]:
+                case var g when g > studentGrades[(percent * 3)]:
                     return 'C';
 
-                case var g when g > studentGrades[x * 4] && g < studentGrades[x * 3]:
+                case var g when g > studentGrades[(percent * 4)]:
                     return 'D';
 
                 default:
